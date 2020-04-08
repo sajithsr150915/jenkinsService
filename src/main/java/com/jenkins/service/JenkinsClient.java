@@ -71,9 +71,11 @@ public class JenkinsClient {
 	public  String jenkinsGetAPI(String URI) throws AuthenticationException, ClientProtocolException, IOException {
 		
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build(); 
-		HttpGet httpGet = new HttpGet(
-				jenkinsURL+URI);
-
+		
+		URI = jenkinsURL + URI;
+		URI = URI.replace(" ", "%20");
+		HttpGet httpGet = new HttpGet( URI);
+		
 		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(JenkinsAuthenticationUserName,
 				JenkinsAuthenticationPassword);
 		httpGet.addHeader(new BasicScheme().authenticate(creds, httpGet, null));

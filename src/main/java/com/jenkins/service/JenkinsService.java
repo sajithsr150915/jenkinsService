@@ -43,5 +43,148 @@ public class JenkinsService {
 			return null;
 		}
 	
+		
+		
+		public String jenkinsJobNameColor() {
+
+			try {
+				String URI = "/api/json?tree=jobs[name,color]";
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		public String latestBuildOfJob(String jobName) {
+
+			try {
+				String URI = "/job/jobName/lastBuild/api/json";
+				URI=URI.replace("jobName", jobName);
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		public String detailsOfJob(String jobName) {
+
+			try {
+				String URI = "/job/jobName/api/json?tree=builds[number,status,timestamp,id,result]";
+				URI=URI.replace("jobName", jobName);
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		public String lastBuildSpecificDetails(String jobName) {
+
+			try {
+				String URI = "/job/jobName/lastBuild/api/json?tree=result,timestamp,estimatedDuration";
+				URI=URI.replace("jobName", jobName);
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		public String buildDetailOfJob(String jobName,String buildNo) {
+
+			try {
+				String URI = "/job/jobName/buildNo/api/json";
+				URI=URI.replace("jobName", jobName);
+				URI=URI.replace("buildNo", buildNo);
+
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		public String jobDescription(String jobName) {
+
+			try {
+				String URI = "/job/jobName/description";
+				URI=URI.replace("jobName", jobName);
+
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		
+		
+		public String configXML(String jobName) {
+
+			try {
+				String URI = "/job/jobName/config.xml";
+				URI=URI.replace("jobName", jobName);
+
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		
+		
+		
+		
+		
 	
 }
