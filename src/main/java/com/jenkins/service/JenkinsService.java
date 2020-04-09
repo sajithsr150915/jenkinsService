@@ -19,14 +19,7 @@ public class JenkinsService {
 
 	@Autowired
 	private JenkinsClient jenkinsClient;
-	/*http://localhost:8080/overallLoad/api/json
-http://localhost:8080/job/build%20project/lastBuild/logText/progressiveText
-http://localhost:8080/pluginManager/api/json?depth=5
-
-http://localhost:8080/queue/api/json
-
-http://localhost:8080/queue/item/33/api/json
-*/
+	
 	
 	private static final  String  jenkinsJobURI="/api/json";
 	
@@ -320,5 +313,47 @@ http://localhost:8080/queue/item/33/api/json
 		/*
 		 * Sample code ends here......
 		 */
+		
+		/*http://localhost:8080/overallLoad/api/json
+		http://localhost:8080/job/build%20project/lastBuild/logText/progressiveText
+		http://localhost:8080/pluginManager/api/json?depth=5
+
+		http://localhost:8080/queue/api/json
+
+		http://localhost:8080/queue/item/33/api/json
+		*/
+		
+			public String overallLoad() {
+			
+			String jenkinsUrl = this.url + "/overallLoad/api/json";
+			return this.restTemplate.getForObject(jenkinsUrl, String.class);
+		}
+		
+			public String lastBuildLogText(String jobName) {
+				
+				String jenkinsUrl = this.url + "/job/{jobName}lastBuild/logText/progressiveText";
+				return this.restTemplate.getForObject(jenkinsUrl, String.class,jobName);
+			}
+			
+			public String pluginManager() {
+				
+				String jenkinsUrl = this.url + "/pluginManager/api/json?depth=5";
+				return this.restTemplate.getForObject(jenkinsUrl, String.class);
+			}
+			
+			public String queueList() {
+				
+				String jenkinsUrl = this.url + "/queue/api/json";
+				return this.restTemplate.getForObject(jenkinsUrl, String.class);
+			}
+			
+			public String queueItem(String itemNo) {
+				
+				String jenkinsUrl = this.url + "/queue/item/{itemNo}/api/json";
+				return this.restTemplate.getForObject(jenkinsUrl, String.class,itemNo);
+			}
+			
+			
+		
 	
 }

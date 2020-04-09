@@ -176,6 +176,76 @@ public class JenkinsController {
 		return value;
 	}
 	
+
+	/**
+	 * Method for getting the details of the overallLoad
+	 * @return String
+	 */
+	@GetMapping("/overallLoad")
+	public String overallLoad() {
+
+		String value = jenkinsService.overallLoad();
+		
+		return value;
+	}
+	
+
+	/**
+	 * Method for getting the details of the log of last build of a job
+	 * by passing the jobName
+	 * @param jobName
+	 * @return String
+	 */
+	@GetMapping("/lastBuildLog/{jobName}")
+	public String lastBuildLog(@PathVariable("jobName") String jobName) {
+
+		String value = jenkinsService.lastBuildLogText(jobName);
+		
+		return value;
+	}
+		
+
+	/**
+	 * Method for getting the details of the manage plugins
+	 * @return String
+	 */
+	@GetMapping("/pluginManager")
+	public String pluginManager() {
+
+		String value = jenkinsService.pluginManager();
+		
+		return value;
+	}
+	
+
+	/**
+	 * Method for getting the details of the queued items
+	 * @return String
+	 */
+	@GetMapping("/queueList")
+	public String queueList() {
+
+		String value = jenkinsService.queueList();
+		
+		return value;
+	}
+	
+	
+
+	/**
+	 * Method for getting the details of the queue item
+	 * by passing the item itemNo
+	 * @param jobName
+	 * @return String
+	 */
+	@GetMapping("/queueItem/{itemNo}")
+	public String queueItem(@PathVariable("itemNo") String itemNo) {
+
+		String value = jenkinsService.queueItem(itemNo);
+		
+		return value;
+	}
+	
 	
 	
 	
