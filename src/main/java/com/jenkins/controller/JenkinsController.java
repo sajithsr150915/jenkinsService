@@ -105,6 +105,21 @@ public class JenkinsController {
 		return value;
 	}
 	
+	@GetMapping("/workflowAPI/{jobName}/{buildNo}")
+	public String workflowAPI(@PathVariable("jobName") String jobName,@PathVariable("buildNo") String buildNo) {
+
+		String value = jenkinsService.workflowAPI(jobName, buildNo);
+
+		return value;
+	}
+	
+	@GetMapping("/pipelineNode/{jobName}/{buildNo}/{nodeId}")
+	public String pipelineNode(@PathVariable("jobName") String jobName,@PathVariable("buildNo") String buildNo, @PathVariable("nodeId") String nodeId) {
+
+		String value = jenkinsService.pipelineNode(jobName, buildNo, nodeId);
+		return value;
+	}
+	
 	
 	
 	

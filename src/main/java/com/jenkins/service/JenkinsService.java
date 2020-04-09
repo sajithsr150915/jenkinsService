@@ -182,6 +182,50 @@ public class JenkinsService {
 		}
 		
 		
+		public String workflowAPI(String jobName,String buildNo) {
+
+			try {
+				String URI = "/job/jobName/buildNo/wfapi/describe";
+				URI=URI.replace("jobName", jobName);
+				URI=URI.replace("buildNo", buildNo);
+
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		
+		public String pipelineNode(String jobName,String buildNo, String nodeId) {
+
+			try {
+				String URI = "/job/jobName/buildNo/execution/node/nodeId/wfapi/describe";
+				URI=URI.replace("jobName", jobName);
+				URI=URI.replace("buildNo", buildNo);
+				URI=URI.replace("nodeId", nodeId);
+
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+		
+		
 		
 		
 		
