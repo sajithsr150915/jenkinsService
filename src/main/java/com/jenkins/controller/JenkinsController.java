@@ -163,7 +163,7 @@ public class JenkinsController {
 	}
 	
 	/**
-	 * Method for getting the details of the last failed build of a job
+	 * Method for getting the details of the last completed build of a job
 	 * by passing the jobName
 	 * @param jobName
 	 * @return String
@@ -172,7 +172,7 @@ public class JenkinsController {
 	public String lastCompletedBuild(@PathVariable("jobName") String jobName) {
 
 		String value = jenkinsService.lastCompletedBuild(jobName);
-
+		
 		return value;
 	}
 	
