@@ -226,9 +226,79 @@ public class JenkinsService {
 		}
 		
 		
+		public String lastStableBuild(String jobName) {
+
+			try {
+				String URI = "/job/jobName/lastStableBuild/api/json";
+				URI=URI.replace("jobName", jobName);
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
 		
 		
+		public String lastSuccessfulBuild(String jobName) {
+
+			try {
+				String URI = "/job/jobName/lastSuccessfulBuild/api/json";
+				URI=URI.replace("jobName", jobName);
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
+				
 		
+		public String lastFailedBuild(String jobName) {
+
+			try {
+				String URI = "/job/jobName/lastFailedBuild/api/json";
+				URI=URI.replace("jobName", jobName);
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
 		
+			
+		public String lastCompletedBuild(String jobName) {
+
+			try {
+				String URI = "/job/jobName/lastCompletedBuild/api/json";
+				URI=URI.replace("jobName", jobName);
+				return jenkinsClient.jenkinsGetAPI(URI);
+			} catch (AuthenticationException e) {
+				logger.error("AuthenticationException error" + e);
+			} catch (ClientProtocolException e) {
+				logger.error("ClientProtocolException error" + e);
+
+			} catch (IOException e) {
+				logger.error("IOException error" + e);
+
+			}
+			return null;
+		}
 	
 }

@@ -120,6 +120,62 @@ public class JenkinsController {
 		return value;
 	}
 	
+	/**
+	 * Method for getting the details of the last Stable build of a Job
+	 * passing the jobName
+	 * @param jobName
+	 * @return String 
+	 */
+	@GetMapping("/lastStableBuild/{jobName}")
+	public String lastStableBuild(@PathVariable("jobName") String jobName) {
+
+		String value = jenkinsService.lastStableBuild(jobName);
+
+		return value;
+	}
+	
+	/**
+	 * Method for getting the details of the last successful build of a job
+	 * by passing the jobName
+	 * @param jobName
+	 * @return String
+	 */
+	@GetMapping("/lastSuccessfulBuild/{jobName}")
+	public String lastSuccessfulBuild(@PathVariable("jobName") String jobName) {
+
+		String value = jenkinsService.lastSuccessfulBuild(jobName);
+
+		return value;
+	}
+	
+	/**
+	 * Method for getting the details of the last failed build of a job
+	 * by passing the jobName
+	 * @param jobName
+	 * @return String
+	 */
+	@GetMapping("/lastFailedBuild/{jobName}")
+	public String lastFailedBuild(@PathVariable("jobName") String jobName) {
+
+		String value = jenkinsService.lastFailedBuild(jobName);
+
+		return value;
+	}
+	
+	/**
+	 * Method for getting the details of the last failed build of a job
+	 * by passing the jobName
+	 * @param jobName
+	 * @return String
+	 */
+	@GetMapping("/lastCompletedBuild/{jobName}")
+	public String lastCompletedBuild(@PathVariable("jobName") String jobName) {
+
+		String value = jenkinsService.lastCompletedBuild(jobName);
+
+		return value;
+	}
+	
 	
 	
 	
