@@ -324,7 +324,7 @@ public class JenkinsService {
 		
 			public String lastBuildLogText(String jobName) {
 				
-				String jenkinsUrl = this.url + "/job/{jobName}lastBuild/logText/progressiveText";
+				String jenkinsUrl = this.url + "/job/{jobName}/lastBuild/logText/progressiveText";
 				return this.restTemplate.getForObject(jenkinsUrl, String.class,jobName);
 			}
 			
