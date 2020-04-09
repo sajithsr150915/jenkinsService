@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @Component
@@ -282,23 +284,34 @@ public class JenkinsService {
 			return null;
 		}
 		
+		
+		/**
+		 * Sample code for getting the last completed build of a job
+		 * Used the RestTemplate way to fetch the details from jenkins
+		 * as part of a trial method for reducing the code.
+		 */
+		
+		private final RestTemplate restTemplate;		
+		@Value("${jenkinsURL}")
+		private String url;
+		
+		private static String username = "admin";
+		private static String password = "admin";
+		
+		public JenkinsService(RestTemplateBuilder restTemplateBuilder) {
+			this.restTemplate = restTemplateBuilder
+					.basicAuthentication(username, password)
+					.build();
+		}
 			
 		public String lastCompletedBuild(String jobName) {
-
-			try {
-				String URI = "/job/jobName/lastCompletedBuild/api/json";
-				URI=URI.replace("jobName", jobName);
-				return jenkinsClient.jenkinsGetAPI(URI);
-			} catch (AuthenticationException e) {
-				logger.error("AuthenticationException error" + e);
-			} catch (ClientProtocolException e) {
-				logger.error("ClientProtocolException error" + e);
-
-			} catch (IOException e) {
-				logger.error("IOException error" + e);
-
-			}
-			return null;
+			
+			String jenkinsUrl = this.url + "/job/{jobName}/lastCompletedBuild/api/json";
+			return this.restTemplate.getForObject(jenkinsUrl, String.class, jobName);
 		}
+		
+		/*
+		 * Sample code ends here......
+		 */
 	
 }
