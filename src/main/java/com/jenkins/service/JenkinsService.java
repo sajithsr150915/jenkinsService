@@ -314,14 +314,7 @@ public class JenkinsService {
 		 * Sample code ends here......
 		 */
 		
-		/*http://localhost:8080/overallLoad/api/json
-		http://localhost:8080/job/build%20project/lastBuild/logText/progressiveText
-		http://localhost:8080/pluginManager/api/json?depth=5
 
-		http://localhost:8080/queue/api/json
-
-		http://localhost:8080/queue/item/33/api/json
-		*/
 		
 			public String overallLoad() {
 			
