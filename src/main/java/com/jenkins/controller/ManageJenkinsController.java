@@ -1,6 +1,10 @@
 
 package com.jenkins.controller;
 
+import java.io.IOException;
+
+import org.apache.http.auth.AuthenticationException;
+import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jenkins.model.BuildInfo;
+import com.jenkins.model.JenkinsDetails;
 import com.jenkins.model.JobDetails;
+import com.jenkins.model.JobSpecificDetails;
+import com.jenkins.model.LastBuild;
 import com.jenkins.model.PipelineNode;
+import com.jenkins.model.WorkFlow;
 import com.jenkins.model.QueueList;
 import com.jenkins.service.ManageJenkinsService;
 
@@ -22,12 +30,7 @@ public class ManageJenkinsController {
 	ManageJenkinsService manageJenkinsService;
 	
 	
-	@GetMapping("/testlastSucessfulbuild")
-    public String  jenkinsDetails() 
-    {		
-		
-		return "";
-    }
+	
 	
 	
 	/**
@@ -125,6 +128,41 @@ public class ManageJenkinsController {
 		QueueList queueList = manageJenkinsService.queueList();
 		return queueList;
 	}
+	
+	@GetMapping("/jenkinsJobNameandStatus")
+	public JobSpecificDetails jenkinsJobNameandStatus() {
+
+		JobSpecificDetails jobSpecificDetails= manageJenkinsService.jenkinsJobNameColor();
+		return jobSpecificDetails;
+	}
+	
+	
+	
+	@GetMapping("/lastBuildSpecificDetails/{jobName}")
+	public LastBuild lastBuildSpeci(@PathVariable("jobName") String jobName) {
+
+		LastBuild lastBuild = manageJenkinsService.lastBuildSpecificDetails(jobName);
+		return lastBuild; 
+	}
+	
+	@GetMapping("/workflowAPI/{jobName}/{buildNo}")
+	public WorkFlow workflowAPI(@PathVariable("jobName") String jobName,@PathVariable("buildNo") String buildNo) {
+
+		WorkFlow wrkFlow = manageJenkinsService.workflowAPI(jobName, buildNo);
+
+		return wrkFlow;
+	}
+	
+	
+	@GetMapping("/jenkinsDetails")
+    public JenkinsDetails  jenkinsDetails() 
+    {
+		
+		
+		JenkinsDetails jenkinsDetails= manageJenkinsService.jenkinsGetAPI();
+		
+		return jenkinsDetails;
+    }
 	
 	
 	

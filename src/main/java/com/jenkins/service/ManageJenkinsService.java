@@ -14,8 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.jenkins.model.BuildInfo;
+import com.jenkins.model.JenkinsDetails;
 import com.jenkins.model.JobDetails;
+import com.jenkins.model.JobSpecificDetails;
+import com.jenkins.model.LastBuild;
 import com.jenkins.model.PipelineNode;
+import com.jenkins.model.WorkFlow;
 import com.jenkins.model.QueueList;
 
 @Service
@@ -96,12 +100,43 @@ public class ManageJenkinsService {
 		String jenkinsUrl = this.url + "/job/{jobName}/{buildNo}/execution/node/{nodeId}/wfapi/describe";
 		return this.restTemplate.getForObject(jenkinsUrl, PipelineNode.class, jobName, buildNo, nodeId);
 	}
-	
-	public QueueList queueList() {
+
+public QueueList queueList() {
 		
 		String jenkinsUrl = this.url + "/queue/api/json";
 		return this.restTemplate.getForObject(jenkinsUrl, QueueList.class);
 	}
+	
+	
+	
+	public JobSpecificDetails jenkinsJobNameColor() {
+		String jenkinsUrl = this.url + "/api/json?tree=jobs[name,color]";
+		return this.restTemplate.getForObject(jenkinsUrl, JobSpecificDetails.class);
+		
+		
+	}
+	
+	
+	
+	public LastBuild lastBuildSpecificDetails(String jobName) {
+		String jenkinsUrl = this.url + "/job/{jobName}/lastBuild/api/json?tree=result,timestamp,estimatedDuration";
+		return this.restTemplate.getForObject(jenkinsUrl, LastBuild.class, jobName);
+	}
+		
+	public WorkFlow workflowAPI(String jobName,String buildNo) {
+		String jenkinsUrl = this.url + "/job/{jobName}/{buildNo}/wfapi/describe";
+		return this.restTemplate.getForObject(jenkinsUrl, WorkFlow.class, jobName,buildNo);
+		
+	}
+	
+	
+	public JenkinsDetails jenkinsGetAPI() {
+		String jenkinsUrl = this.url + jenkinsJobURI;
+		return this.restTemplate.getForObject(jenkinsUrl, JenkinsDetails.class);
+		
+	}
+	
+	
 	
 
 }
