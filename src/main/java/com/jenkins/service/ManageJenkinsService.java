@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.jenkins.model.BuildInfo;
+
 @Service
 @Component
 public class ManageJenkinsService {
@@ -71,15 +73,13 @@ public class ManageJenkinsService {
 					.build();
 		}
 			
-		public String lastCompletedBuild(String jobName) {
+		public BuildInfo lastCompletedBuild(String jobName) {
 			
 			String jenkinsUrl = this.url + "/job/{jobName}/lastCompletedBuild/api/json";
-			return this.restTemplate.getForObject(jenkinsUrl, String.class, jobName);
+			return this.restTemplate.getForObject(jenkinsUrl, BuildInfo.class, jobName);
 		}
 		
-		/*
-		 * Sample code ends here......
-		 */
+		
 		
 
 		
