@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.jenkins.model.BuildInfo;
 import com.jenkins.model.JobDetails;
 import com.jenkins.model.PipelineNode;
+import com.jenkins.model.QueueList;
 
 @Service
 @Component
@@ -95,5 +96,12 @@ public class ManageJenkinsService {
 		String jenkinsUrl = this.url + "/job/{jobName}/{buildNo}/execution/node/{nodeId}/wfapi/describe";
 		return this.restTemplate.getForObject(jenkinsUrl, PipelineNode.class, jobName, buildNo, nodeId);
 	}
+	
+	public QueueList queueList() {
+		
+		String jenkinsUrl = this.url + "/queue/api/json";
+		return this.restTemplate.getForObject(jenkinsUrl, QueueList.class);
+	}
+	
 
 }

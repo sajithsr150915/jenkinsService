@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jenkins.model.BuildInfo;
 import com.jenkins.model.JobDetails;
 import com.jenkins.model.PipelineNode;
+import com.jenkins.model.QueueList;
 import com.jenkins.service.ManageJenkinsService;
 
 
@@ -119,7 +120,11 @@ public class ManageJenkinsController {
 		return details;
 	}
 	
-	
+	@GetMapping("/queueList")
+	public QueueList queueList() {
+		QueueList queueList = manageJenkinsService.queueList();
+		return queueList;
+	}
 	
 	
 	
