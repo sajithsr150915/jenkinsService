@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.jenkins.model.BuildInfo;
+import com.jenkins.model.JobDetails;
 
 @Service
 @Component
@@ -80,7 +81,13 @@ public class ManageJenkinsService {
 		}
 		
 		
-		
+		public JobDetails detailsOfJob(String jobName) {
+			
+			String jenkinsUrl = this.url + "/job/{jobName}/api/json?tree=builds[number,status,timestamp,id,result]";
+			return this.restTemplate.getForObject(jenkinsUrl, JobDetails.class, jobName);
+
+			
+		}
 
 		
 			public String overallLoad() {
