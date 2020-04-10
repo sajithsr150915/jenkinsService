@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jenkins.model.BuildInfo;
 import com.jenkins.model.JobDetails;
 import com.jenkins.model.PipelineNode;
+import com.jenkins.model.PluginManager;
 import com.jenkins.model.QueueList;
 import com.jenkins.service.ManageJenkinsService;
 
@@ -126,6 +127,11 @@ public class ManageJenkinsController {
 		return queueList;
 	}
 	
+	@GetMapping("/pluginManager")
+	public PluginManager pluginManager() {
+		PluginManager pluginManager = manageJenkinsService.pluginManager();		
+		return pluginManager;
+	}
 	
-	
+
 }

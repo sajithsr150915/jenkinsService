@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.jenkins.model.BuildInfo;
 import com.jenkins.model.JobDetails;
 import com.jenkins.model.PipelineNode;
+import com.jenkins.model.PluginManager;
 import com.jenkins.model.QueueList;
 
 @Service
@@ -103,5 +104,9 @@ public class ManageJenkinsService {
 		return this.restTemplate.getForObject(jenkinsUrl, QueueList.class);
 	}
 	
-
+	public PluginManager pluginManager() {		
+		String jenkinsUrl = this.url + "/pluginManager/api/json?depth=5";
+		return this.restTemplate.getForObject(jenkinsUrl, PluginManager.class);
+	}
+	
 }
