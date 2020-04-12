@@ -9,7 +9,7 @@ public class QueueList {
 	
 	private List<DiscoverableItems> discoverableItems;
 	
-	private List<Items> items;
+	private List<Item> items;
 
 	public String get_class() {
 		return _class;
@@ -27,11 +27,11 @@ public class QueueList {
 		this.discoverableItems = discoverableItems;
 	}
 
-	public List<Items> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Items> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 		

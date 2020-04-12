@@ -14,10 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.jenkins.model.BuildInfo;
+import com.jenkins.model.Item;
 import com.jenkins.model.JenkinsDetails;
 import com.jenkins.model.JobDetails;
 import com.jenkins.model.JobSpecificDetails;
 import com.jenkins.model.LastBuild;
+import com.jenkins.model.OverallLoad;
 import com.jenkins.model.PipelineNode;
 import com.jenkins.model.WorkFlow;
 import com.jenkins.model.QueueList;
@@ -67,11 +69,7 @@ public class ManageJenkinsService {
 
 	}
 
-	public String overallLoad() {
 
-		String jenkinsUrl = this.url + "/overallLoad/api/json";
-		return this.restTemplate.getForObject(jenkinsUrl, String.class);
-	}
 	
 	public BuildInfo latestBuildOfJob(String jobName) {
 		
@@ -103,12 +101,18 @@ public class ManageJenkinsService {
 		return this.restTemplate.getForObject(jenkinsUrl, PipelineNode.class, jobName, buildNo, nodeId);
 	}
 
-public QueueList queueList() {
-		
-		String jenkinsUrl = this.url + "/queue/api/json";
-		return this.restTemplate.getForObject(jenkinsUrl, QueueList.class);
-	}
+	public QueueList queueList() {
+			
+			String jenkinsUrl = this.url + "/queue/api/json";
+			return this.restTemplate.getForObject(jenkinsUrl, QueueList.class);
+		}
 
+	public Item queueItem(String itemNo) {
+		
+		String jenkinsUrl = this.url + "/queue/item/{itemNo}/api/json";
+		return this.restTemplate.getForObject(jenkinsUrl, Item.class,itemNo);
+	}
+	
 	public PluginManager pluginManager() {		
 		String jenkinsUrl = this.url + "/pluginManager/api/json?depth=5";
 		return this.restTemplate.getForObject(jenkinsUrl, PluginManager.class);
@@ -141,6 +145,40 @@ public QueueList queueList() {
 		return this.restTemplate.getForObject(jenkinsUrl, JenkinsDetails.class);
 		
 	}
+	
+	public OverallLoad overallLoad() {
+		
+		String jenkinsUrl = this.url + "/overallLoad/api/json";
+		return this.restTemplate.getForObject(jenkinsUrl, OverallLoad.class);
+	}
+	
+	
+	public String configXML(String jobName) {
+		String jenkinsUrl = this.url + "/job/{jobName}/config.xml";
+		return this.restTemplate.getForObject(jenkinsUrl, String.class,jobName);
+
+	}
+	
+	public String jobDescription(String jobName) {
+		String jenkinsUrl = this.url + "/job/{jobName}/description";
+		return this.restTemplate.getForObject(jenkinsUrl, String.class,jobName);
+		
+	}
+	
+	public String lastBuildLogText(String jobName) {
+		
+		String jenkinsUrl = this.url + "/job/{jobName}/lastBuild/logText/progressiveText";
+		return this.restTemplate.getForObject(jenkinsUrl, String.class,jobName);
+	}
+	
+	public BuildInfo buildDetailOfJob(String jobName,String buildNo) {
+		String jenkinsUrl = this.url + "/job/{jobName}/{buildNo}/api/json";
+		return this.restTemplate.getForObject(jenkinsUrl, BuildInfo.class,jobName,buildNo);
+		
+	}
+	
+	
+	
 	
 	
 

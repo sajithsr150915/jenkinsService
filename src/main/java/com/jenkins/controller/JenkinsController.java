@@ -23,14 +23,7 @@ public class JenkinsController {
 	JenkinsService jenkinsService;
 	
 	
-	@GetMapping("/testStatus")
-    public String  testStatus() 
-    {
-		
-		
-		return "OK";
-    }
-	
+
 	@GetMapping("/jenkinsDetails")
     public String  jenkinsDetails() 
     {
@@ -245,6 +238,8 @@ public class JenkinsController {
 		
 		return value;
 	}
+	
+	
 	
 	
 	
