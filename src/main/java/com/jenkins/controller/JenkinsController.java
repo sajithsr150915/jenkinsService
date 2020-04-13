@@ -241,7 +241,17 @@ public class JenkinsController {
 	
 	
 	
-	
+	/**
+	 * Method for getting the details of the set of pipelin
+	 * @return String
+	 */
+	@GetMapping("/setOfPipeline")
+	public String setOfPipeline() {
+
+		String value = jenkinsService.setOfPipeline();
+		
+		return value;
+	}
 	
 	
 }
