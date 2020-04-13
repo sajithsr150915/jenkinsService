@@ -346,6 +346,11 @@ public class JenkinsService {
 				return this.restTemplate.getForObject(jenkinsUrl, String.class,itemNo);
 			}
 			
+			public String setOfPipeline() {
+				
+				String jenkinsUrl = this.url + "/job/setofpipline/api/json";
+				return this.restTemplate.getForObject(jenkinsUrl, String.class);
+			}
 			
 		
 	
