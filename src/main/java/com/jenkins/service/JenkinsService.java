@@ -46,7 +46,7 @@ public class JenkinsService {
 		}
 	
 		
-		
+		/*jenkins job nam and color*/
 		public String jenkinsJobNameColor() {
 
 			try {
