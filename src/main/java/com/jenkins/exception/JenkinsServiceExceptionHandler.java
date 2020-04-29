@@ -10,7 +10,7 @@ import org.springframework.web.client.HttpServerErrorException.InternalServerErr
 
 @ControllerAdvice
 public class JenkinsServiceExceptionHandler {
-	
+	/*add exception details*/
 	@ExceptionHandler(Unauthorized.class)
 	public ResponseEntity<ErrorResponse> UnAuthorizedExceptionHandler(Exception ex) {
 		ErrorResponse error = new ErrorResponse();

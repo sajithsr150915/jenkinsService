@@ -3,7 +3,7 @@ package com.jenkins.exception;
 import org.springframework.http.HttpStatus;
 
 public class ErrorResponse {
-	
+	/*error*/
 	private HttpStatus errorCode;
 	private String message;
 
