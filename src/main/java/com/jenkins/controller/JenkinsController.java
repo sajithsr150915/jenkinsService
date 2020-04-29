@@ -33,7 +33,7 @@ public class JenkinsController {
 		
 		return value;
     }
-	
+	/*get jobs based on name and status*/
 	@GetMapping("/jenkinsJobNameandStatus")
     public String  jenkinsJobNameandStatus() 
     {
