@@ -33,7 +33,7 @@ public class ManageJenkinsController {
 	
 	
 	/**
-	 * Method for getting the details of the last completed build of the job
+	 * Method for getting the details of the last completed build info of the job
 	 * by passing the jobName
 	 * @param jobName
 	 * @return BuildInfo

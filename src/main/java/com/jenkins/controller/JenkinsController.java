@@ -23,7 +23,7 @@ public class JenkinsController {
 	JenkinsService jenkinsService;
 	
 	
-
+/*jenkindetail*/
 	@GetMapping("/jenkinsDetails")
     public String  jenkinsDetails() 
     {
